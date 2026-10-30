@@ -2,15 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Las clases de anatomía de Aldebarán</title>
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
   
-  <!-- MANIFIESTO PWA EMBEBIDO Y CONFIGURACIÓN ANDROID -->
-  <link rel="manifest" href="data:application/manifest+json,%7B%22id%22%3A%22%2F%22%2C%22name%22%3A%22Las%20clases%20de%20anatom%C3%ADa%20de%20Aldebar%C3%A1n%22%2C%22short_name%22%3A%22Anatom%C3%ADa%22%2C%22description%22%3A%22Aplicaci%C3%B3n%20web%20interactiva%20de%20anatom%C3%ADa%20humana%20por%20capas%20con%20acetatos%20transl%C3%BAcidos%2C%20etiquetas%20y%20quiz%20escolar.%22%2C%22start_url%22%3A%22%2F%22%2C%22scope%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait-primary%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%234f46e5%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22logo.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22logo.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22logo.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22maskable%22%7D%5D%7D">
-  <link rel="manifest" href="manifest.json">
+  <!-- MANIFIESTO PWA EMBEBIDO Y CONFIGURACIÓN ANDROID STANDALONE -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22id%22%3A%22%2F%22%2C%22name%22%3A%22Las%20clases%20de%20anatom%C3%ADa%20de%20Aldebar%C3%A1n%22%2C%22short_name%22%3A%22Anatom%C3%ADa%22%2C%22description%22%3A%22Atlas%20interactivo%20de%20anatom%C3%ADa%20humana%20por%20capas%20con%20acetatos%20transl%C3%BAcidos%2C%20etiquetas%20y%20quiz%20escolar.%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait-primary%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%234f46e5%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22logo.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22logo.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22logo.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22maskable%22%7D%5D%7D">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -18,27 +17,28 @@
   <meta name="application-name" content="Las clases de anatomía de Aldebarán">
   <meta name="theme-color" content="#4f46e5">
   <meta name="msapplication-TileColor" content="#4f46e5">
-  <meta name="description" content="Las clases de anatomía de Aldebarán: Aplicación educativa interactiva para explorar el cuerpo humano capa por capa con acetatos translúcidos, etiquetas interactivas y centro de impresión.">
+  <meta name="description" content="Atlas interactivo de anatomía humana por capas y acetatos translúcidos con etiquetas interactivas y centro de impresión.">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Canvas Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-  <!-- JSZip CDN para descargar el paquete completo de acetatos en bloque -->
+  <!-- JSZip CDN para descargar paquetes en bloque -->
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       touch-action: manipulation;
     }
     h1, h2, h3, h4 {
       font-family: 'Outfit', sans-serif;
     }
 
-    /* Animaciones de Splash y Fundido */
     @keyframes progressFill {
       0% { width: 0%; }
       100% { width: 100%; }
@@ -48,14 +48,13 @@
       to { opacity: 1; transform: scale(1); }
     }
     .animate-fadeIn {
-      animation: fadeIn 0.25s ease-out forwards;
+      animation: fadeIn 0.22s ease-out forwards;
     }
 
     /*
-      MAXIMIZACIÓN DEL PERSONAJE EN MÓVIL Y ESCENARIO DE ZOOM SINCRONIZADO:
-      Las imágenes originales son 16:9 horizontales (2752x1536) con el cuerpo centrado.
-      Al fijar height: 97% y aspect-ratio: 2752/1536 en #zoom-stage, la figura humana
-      aprovecha la altura vertical de la pantalla en teléfonos celulares sin scroll.
+      ESCENARIO DE VISOR ANATÓMICO (CERO SCROLL)
+      Las imágenes son 2752x1536 (16:9). Se fija altura al 96% con aspect-ratio
+      para que el personaje completo (cabeza a pies) quede 100% visible sin barras de scroll.
     */
     #zoom-stage {
       height: 96%;
@@ -79,7 +78,6 @@
       transition: opacity 0.25s ease-in-out;
     }
 
-    /* Contenedor idéntico para pines y etiquetas interactivas sincronizadas */
     .anatomy-labels-overlay {
       position: absolute;
       inset: 0;
@@ -88,20 +86,19 @@
       pointer-events: none;
       user-select: none;
       z-index: 25;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.25s ease-in-out;
     }
 
-    /* Animación de pulso para los pines de las etiquetas */
     @keyframes pinPulse {
       0% { transform: scale(0.9); opacity: 0.9; }
-      50% { transform: scale(1.3); opacity: 0.4; }
+      50% { transform: scale(1.35); opacity: 0.35; }
       100% { transform: scale(0.9); opacity: 0.9; }
     }
     .pin-pulse-circle {
       animation: pinPulse 2s infinite ease-in-out;
     }
 
-    /* Estilos de impresión física en acetatos tamaño carta / A4 */
+    /* Estilos de impresión física en acetatos */
     @media print {
       body * {
         visibility: hidden;
@@ -131,7 +128,7 @@
 <body class="h-screen h-[100dvh] max-h-[100dvh] w-screen overflow-hidden flex flex-col justify-between bg-slate-100 text-slate-800 select-none relative">
 
   <!-- ========================================================= -->
-  <!-- 0. PANTALLA DE BIENVENIDA (SPLASH SCREEN) FONDO BLANCO    -->
+  <!-- 1. PANTALLA DE BIENVENIDA (SPLASH SCREEN) FONDO BLANCO    -->
   <!-- CON LOGO, TÍTULO Y PARTÍCULAS FLOTANTES (3 SEGUNDOS)      -->
   <!-- ========================================================= -->
   <div id="splash-screen" class="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center select-none transition-opacity duration-700 ease-out opacity-100">
@@ -139,11 +136,11 @@
     <canvas id="splash-canvas" class="absolute inset-0 pointer-events-none w-full h-full"></canvas>
 
     <div class="relative z-10 flex flex-col items-center text-center p-6 max-w-sm sm:max-w-md animate-fadeIn">
-      <!-- Logotipo escolar/corporativo -->
+      <!-- Logotipo oficial -->
       <div class="relative mb-5">
         <div class="absolute -inset-3 bg-gradient-to-r from-indigo-500/20 via-sky-400/25 to-emerald-400/20 rounded-full blur-xl animate-pulse"></div>
         <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white p-3 shadow-xl border border-slate-100 flex items-center justify-center">
-          <img src="logo.png" alt="Logo Aldebarán" class="w-full h-full object-contain" onerror="this.style.display='none'">
+          <img src="logo.png" alt="Logo Aldebarán" class="w-full h-full object-contain" onerror="this.src='/logo.png'">
         </div>
       </div>
 
@@ -168,7 +165,7 @@
   </div>
 
   <!-- ========================================================= -->
-  <!-- 1. BARRA SUPERIOR FIJA COMPACTA (CERO SCROLL)             -->
+  <!-- 2. BARRA SUPERIOR FIJA (SIN BOTÓN DEL 70% REDUNDANTE)     -->
   <!-- ========================================================= -->
   <header class="h-12 sm:h-14 shrink-0 bg-white border-b border-slate-200 px-2 sm:px-6 flex items-center justify-between gap-1 sm:gap-2 shadow-xs z-30">
     <div class="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -176,50 +173,41 @@
         src="logo.png"
         alt="Aldebarán"
         class="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-full shadow-xs shrink-0 bg-amber-50 border border-amber-200"
-        onerror="this.style.display='none'"
+        onerror="this.src='/logo.png'"
       />
       <div class="min-w-0">
         <h1 class="text-xs sm:text-base font-bold text-slate-900 tracking-tight leading-tight truncate">
           Las clases de anatomía de Aldebarán
         </h1>
         <span class="hidden md:block text-[10px] font-semibold text-emerald-600 truncate">
-          Acetatos Translúcidos (70%) • Control de Opacidad • Etiquetas Interactivas
+          Atlas de Anatomía • Control de Capas • Etiquetas Interactivas
         </span>
       </div>
     </div>
 
+    <!-- Menú de Acciones: Instalación PWA, Audio, Pines, Quiz e Impresión -->
     <div class="flex items-center gap-1 sm:gap-2 shrink-0">
-      <!-- Botón PWA para Android / Móvil -->
+      <!-- Botón PWA para Android -->
       <button id="btn-install-pwa" type="button" class="hidden flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-lg sm:rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold transition-all cursor-pointer shadow-2xs" title="Instalar aplicación en Android / Pantalla Principal">
         <span>📱</span>
         <span class="hidden md:inline">Instalar App</span>
         <span class="md:hidden text-[11px]">Instalar</span>
       </button>
 
-      <button id="btn-toggle-sound" class="p-1.5 sm:p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 cursor-pointer" title="Activar/Silenciar sonido">
+      <!-- Botón Audio -->
+      <button id="btn-toggle-sound" class="p-1.5 sm:p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 cursor-pointer transition-colors" title="Activar/Silenciar sonido">
         <span id="sound-icon" class="text-sm">🔊</span>
       </button>
 
-      <!-- BOTÓN TOGGLE: MOSTRAR / OCULTAR ETIQUETAS -->
-      <button id="btn-toggle-labels" class="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition-all cursor-pointer" title="Mostrar/Ocultar nombres de órganos y huesos con pines interactivos">
+      <!-- Botón Pines / Etiquetas -->
+      <button id="btn-toggle-labels" class="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition-all cursor-pointer" title="Mostrar/Ocultar nombres de órganos con pines interactivos">
         <span>🏷️</span>
         <span class="hidden sm:inline" id="labels-btn-text">Mostrar Etiquetas</span>
         <span class="sm:hidden text-[11px]" id="labels-btn-text-sm">Pines</span>
       </button>
 
-      <!-- BOTÓN: ACETATOS Y OPACIDADES INDIVIDUALES -->
-      <button id="btn-open-zdrawer" class="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-bold transition-all cursor-pointer" title="Abre el menú para regular la transparencia individual de cada acetato (default 70%) y Z-Index">
-        <span>⚙️</span>
-        <span class="hidden sm:inline">Acetatos & Opacidad</span>
-        <span class="sm:hidden text-[11px]">70%</span>
-      </button>
 
-      <button id="btn-toggle-quiz" class="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-bold transition-all cursor-pointer" title="Modo Reto / Quiz Didáctico">
-        <span>★</span>
-        <span class="text-[11px] sm:text-xs">Quiz</span>
-      </button>
-
-      <!-- Botón destacado: Centro de Impresión y Descarga de Acetatos -->
+      <!-- Botón Impresión de Acetatos -->
       <button id="btn-open-acetate" class="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs" title="Centro de Impresión y Descarga de Acetatos">
         <span>🖨️</span>
         <span class="hidden sm:inline">Impresión de Acetatos</span>
@@ -229,11 +217,11 @@
   </header>
 
   <!-- ========================================================= -->
-  <!-- 2. ÁREA CENTRAL: VISOR FLEXIBLE Y ADAPTATIVO (CERO SCROLL)-->
+  <!-- 3. ÁREA CENTRAL: VISOR FLEXIBLE Y ADAPTATIVO (CERO SCROLL)-->
   <!-- ========================================================= -->
   <main class="flex-1 min-h-0 w-full overflow-hidden p-0 m-0 bg-slate-100 flex flex-col justify-between relative">
     
-    <!-- BANNER FLOTANTE DEL QUIZ NO BLOQUEANTE (CONSULTA LIBRE DE CAPAS) -->
+    <!-- BANNER FLOTANTE DEL QUIZ NO BLOQUEANTE (CONSULTA LIBRE) -->
     <div id="quiz-floating-container" class="hidden absolute top-2 left-2 right-2 sm:left-auto sm:right-6 sm:w-96 z-40">
       
       <!-- ESTADO MINIMIZADO -->
@@ -291,26 +279,26 @@
       </div>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL DEL VISOR (FLEX-1 FLUIDO, CERO HUECOS, CUERPO COMPLETO DE CABEZA A PIES) -->
+    <!-- CONTENEDOR PRINCIPAL DEL VISOR (FLEX-1 FLUIDO, PERSONAJE COMPLETO CABEZA A PIES) -->
     <div class="flex-1 min-h-0 w-full max-w-lg sm:max-w-xl md:max-w-2xl mx-auto bg-white sm:border-x border-slate-200/90 relative overflow-hidden flex items-center justify-center">
 
-      <!-- ÁREA DE INTERACCIÓN: GESTOS TÁCTILES Y ZOOM -->
+      <!-- ÁREA DE INTERACCIÓN: ZOOM NATIVO (WHEEL + PINCH-TO-ZOOM / PAN) -->
       <div id="viewport-stage" class="w-full h-full relative overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing select-none" style="touch-action: none;">
         
         <!-- ESCENARIO ANATÓMICO TRANSFORMADO (ZOOM & PAN SINCRONIZADO) -->
         <div id="zoom-stage" class="relative flex items-center justify-center">
           
-          <!-- Capa 0 Base: hombre.jpg -->
-          <img id="layer-img-0" src="hombre.jpg" alt="Cuerpo base" class="anatomy-figure-layer z-0 opacity-100">
+          <!-- Capa 0 Base: hombre.jpg (Única activa por defecto) -->
+          <img id="layer-img-0" src="hombre.jpg" alt="Cuerpo base" class="anatomy-figure-layer z-0 opacity-100" onerror="this.src='/hombre.jpg'">
 
-          <!-- Capas 1 a 7 superpuestas con fondo transparente procesado vía Canvas -->
-          <img id="layer-img-1" alt="Músculo" class="anatomy-figure-layer opacity-100">
+          <!-- Capas 1 a 7 superpuestas con fondo transparente procesado vía Canvas (Todas inactivas por defecto) -->
+          <img id="layer-img-1" alt="Músculo" class="anatomy-figure-layer opacity-0">
           <img id="layer-img-2" alt="Respiratorio" class="anatomy-figure-layer opacity-0">
           <img id="layer-img-3" alt="Circulatorio" class="anatomy-figure-layer opacity-0">
-          <img id="layer-img-4" alt="Digestivo" class="anatomy-figure-layer opacity-100">
+          <img id="layer-img-4" alt="Digestivo" class="anatomy-figure-layer opacity-0">
           <img id="layer-img-5" alt="Nervioso" class="anatomy-figure-layer opacity-0">
           <img id="layer-img-6" alt="Reproductor" class="anatomy-figure-layer opacity-0">
-          <img id="layer-img-7" alt="Óseo" class="anatomy-figure-layer opacity-100">
+          <img id="layer-img-7" alt="Óseo" class="anatomy-figure-layer opacity-0">
 
           <!-- CAPA DE ETIQUETAS ANATÓMICAS INTERACTIVAS (TOGGLE ON/OFF) -->
           <div id="labels-overlay" class="anatomy-labels-overlay opacity-0 pointer-events-none">
@@ -319,41 +307,29 @@
 
         </div>
 
-        <!-- CONTROLES FLOTANTES DE ZOOM (HUD EN ESQUINA INFERIOR DERECHA) -->
-        <div class="absolute bottom-2.5 right-2.5 z-30 flex items-center gap-1 bg-white/95 backdrop-blur-md p-1 rounded-xl sm:rounded-2xl shadow-md border border-slate-200">
-          <button id="btn-zoom-in" type="button" title="Acercar (+)" class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg sm:rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 active:scale-95 transition-all cursor-pointer font-bold text-sm">
-            +
-          </button>
-          <button id="btn-zoom-reset" type="button" title="Reiniciar vista al 100% (o doble toque en pantalla)" class="px-1.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 active:scale-95 transition-all cursor-pointer font-bold text-[10px] sm:text-xs whitespace-nowrap flex items-center gap-0.5">
-            <span id="zoom-badge-text">100%</span>
-            <span class="text-[9px]">⟲</span>
-          </button>
-          <button id="btn-zoom-out" type="button" title="Alejar (-)" class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg sm:rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 active:scale-95 transition-all cursor-pointer font-bold text-sm">
-            -
-          </button>
-        </div>
-
       </div>
     </div>
 
-    <!-- PANEL DE INFORMACIÓN EXTERNO PARA ETIQUETAS ANATÓMICAS (DESPEJA EL CUERPO AL 100%) -->
-    <section id="organ-info-bar" class="w-full shrink-0 bg-white border-t border-slate-200/90 px-2 sm:px-4 py-1.5 flex items-center justify-between gap-2 shadow-xs z-25 min-h-[46px] max-w-full">
-      <div class="flex items-center justify-between w-full text-slate-500 text-[11px] sm:text-xs px-1 max-w-5xl mx-auto">
-        <div class="flex items-center gap-1.5 truncate">
-          <span class="text-amber-500 font-bold shrink-0">💡</span>
-          <span class="truncate font-medium text-slate-600">
-            Activa "🏷️ Etiquetas" para ver los puntos interactivos del atlas anatómico.
-          </span>
-        </div>
-        <span class="hidden sm:inline-block text-[10px] font-semibold text-slate-400 shrink-0 bg-slate-100 px-2 py-0.5 rounded-full">
-          Vista 100% Despejada
-        </span>
+    <!-- ========================================================= -->
+    <!-- 4. MODAL FLOTANTE (POP-UP) DE INFORMACIÓN DE PINES         -->
+    <!-- SE ABRE AL TOCAR UN PIN, COMPLETO Y SIN RECORTES          -->
+    <!-- ========================================================= -->
+    <div id="organ-popup-card" class="hidden absolute bottom-3 left-3 right-3 sm:left-auto sm:right-6 sm:bottom-4 sm:max-w-sm z-40 animate-fadeIn">
+      <!-- Contenido inyectado dinámicamente con título, sistema, descripción completa y botón ✕ -->
+    </div>
+
+    <!-- Píldora guía cuando las etiquetas están activas y ningún pin ha sido seleccionado -->
+    <div id="labels-hint-pill" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 z-30 pointer-events-none animate-fadeIn">
+      <div class="bg-slate-900/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 border border-slate-700/60">
+        <span class="text-amber-400">💡</span>
+        <span>Toca cualquier punto interactivo para abrir su ficha</span>
       </div>
-    </section>
+    </div>
+
   </main>
 
   <!-- ========================================================= -->
-  <!-- 3. BARRA INFERIOR: SLIDER BASE Y BOTONES CON ICONOS       -->
+  <!-- 5. BARRA INFERIOR: SLIDER BASE Y BOTONES CON ICONOS       -->
   <!-- ========================================================= -->
   <footer class="h-16 sm:h-18 shrink-0 bg-white border-t border-slate-200 px-2 sm:px-6 py-1.5 sm:py-2 flex flex-col justify-center gap-1 sm:gap-1.5 shadow-sm z-20">
     
@@ -371,10 +347,11 @@
         <span id="base-opacity-val" class="text-[11px] font-mono font-bold text-indigo-700 w-8 sm:w-9 text-right shrink-0">100%</span>
       </div>
 
-      <button id="btn-quick-open-drawer" class="flex items-center gap-1 px-1.5 sm:px-2 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-[10px] font-bold shrink-0 cursor-pointer transition-colors" title="Ajustar transparencias individuales de los acetatos (Default 70%)">
+      <!-- Botón que abre el cajón lateral para calibrar transparencias individuales -->
+      <button id="btn-quick-open-drawer" class="flex items-center gap-1 px-1.5 sm:px-2 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-[10px] font-bold shrink-0 cursor-pointer transition-colors" title="Ajustar transparencias individuales de los acetatos">
         <span>⚙️</span>
-        <span class="hidden sm:inline">Ajustar Acetatos (70%)</span>
-        <span class="sm:hidden">70% Sliders</span>
+        <span class="hidden sm:inline">Ajustar Acetatos</span>
+        <span class="sm:hidden">Acetatos</span>
       </button>
     </div>
 
@@ -385,7 +362,7 @@
   </footer>
 
   <!-- ========================================================= -->
-  <!-- 4. MENÚ LATERAL COLAPSABLE (ACETATOS Y OPACIDADES)        -->
+  <!-- 6. MENÚ LATERAL COLAPSABLE (ACETATOS Y OPACIDADES AL 70%) -->
   <!-- ========================================================= -->
   <div id="zdrawer-modal" class="hidden fixed inset-0 z-50 flex justify-end bg-slate-950/60 backdrop-blur-xs">
     <div class="bg-white w-full max-w-sm sm:max-w-md h-full flex flex-col p-4 sm:p-5 shadow-2xl border-l border-slate-200">
@@ -397,56 +374,45 @@
         <button id="btn-close-zdrawer" class="text-slate-400 hover:text-slate-700 p-1.5 cursor-pointer font-bold">✕</button>
       </div>
 
-      <!-- Presets de opacidad y selección rápida -->
-      <div class="py-2.5 border-b border-slate-100 flex flex-col gap-2 text-xs">
-        <div class="flex items-center justify-between">
-          <span class="text-slate-500 font-semibold">Preajustes de Acetato:</span>
-          <div class="flex items-center gap-1.5">
-            <button id="btn-preset-70" class="text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2 py-1 rounded hover:bg-indigo-100 cursor-pointer" title="Aplica 70% de opacidad a todos los sistemas">
-              Estándar 70%
-            </button>
-            <button id="btn-preset-100" class="text-[10px] font-bold text-slate-700 bg-slate-100 border border-slate-200 px-2 py-1 rounded hover:bg-slate-200 cursor-pointer" title="Aplica 100% de opacidad a todos los sistemas">
-              Opacas 100%
-            </button>
-          </div>
-        </div>
-
-        <div class="flex items-center justify-between">
-          <span class="text-slate-500 font-semibold">Selección Rápida:</span>
-          <div class="flex items-center gap-1.5">
-            <button id="btn-select-all" class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded hover:bg-emerald-100 cursor-pointer">Activar Todas</button>
-            <button id="btn-clear-all" class="text-[10px] font-bold text-slate-600 bg-slate-100 border border-slate-200 px-2 py-1 rounded hover:bg-slate-200 cursor-pointer">Apagar Todas</button>
-          </div>
+      <!-- Presets de opacidad rápida -->
+      <div class="flex items-center justify-between gap-1.5 py-3 border-b border-slate-100 text-xs">
+        <span class="font-bold text-slate-600 text-[11px]">Calibración rápida:</span>
+        <div class="flex items-center gap-1">
+          <button id="btn-preset-50" class="px-2 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[11px] cursor-pointer">50%</button>
+          <button id="btn-preset-70" class="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[11px] cursor-pointer shadow-xs">70% (Óptimo)</button>
+          <button id="btn-preset-100" class="px-2 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[11px] cursor-pointer">100%</button>
         </div>
       </div>
 
-      <div id="layers-stack-container" class="flex-1 min-h-0 overflow-y-auto space-y-2.5 py-2.5 pr-1">
-        <!-- Renderizado dinámico -->
+      <!-- Lista con drag/reorden y slider de cada lámina -->
+      <div id="layers-stack-container" class="flex-1 min-h-0 overflow-y-auto py-3 space-y-2.5">
+        <!-- Generado dinámicamente -->
       </div>
 
-      <div class="pt-3 border-t border-slate-200 flex justify-end">
-        <button id="btn-close-zdrawer-footer" class="w-full py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs cursor-pointer hover:bg-slate-800">
-          Cerrar Menú
+      <div class="pt-3 border-t border-slate-200 flex items-center justify-between">
+        <button id="btn-reset-order" class="text-xs text-slate-500 hover:text-indigo-600 font-bold cursor-pointer">
+          Restablecer orden anatómico
+        </button>
+        <button id="btn-save-drawer" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs cursor-pointer">
+          Listo
         </button>
       </div>
     </div>
   </div>
 
   <!-- ========================================================= -->
-  <!-- 5. SECCIÓN DEDICADA: IMPRESIÓN Y DESCARGA DE ACETATOS     -->
+  <!-- 7. CENTRO DE IMPRESIÓN Y DESCARGA DE ACETATOS             -->
   <!-- ========================================================= -->
-  <div id="acetate-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/75 backdrop-blur-xs">
-    <div class="bg-white rounded-3xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+  <div id="acetate-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/70 backdrop-blur-xs">
+    <div class="bg-white rounded-3xl max-w-4xl w-full h-[90vh] max-h-[760px] flex flex-col shadow-2xl border border-slate-200 overflow-hidden animate-fadeIn">
       
-      <!-- Encabezado del Centro de Impresión -->
-      <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/80">
+      <!-- Encabezado del modal de acetatos -->
+      <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
         <div>
           <div class="flex items-center gap-2">
-            <span class="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm font-bold shadow-xs">
-              🖨️
-            </span>
-            <h2 class="text-base sm:text-lg font-extrabold text-slate-900">
-              Impresión y Descarga de Acetatos Anatómicos
+            <span class="text-xl">🖨️</span>
+            <h2 class="text-base sm:text-lg font-extrabold text-slate-900 leading-none">
+              Centro de Impresión y Descarga de Acetatos
             </h2>
           </div>
           <p class="text-xs text-slate-500 mt-0.5">
@@ -530,7 +496,7 @@
       <!-- Pie de modal -->
       <div class="px-5 py-3 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
         <span class="text-[11px] text-slate-500">
-          Tip: Al imprimir en la impresora escolar, selecciona "Ajustar al área de impresión" y escala al 100%.
+          Tip: En la impresora escolar, selecciona "Ajustar al área de impresión" y escala al 100%.
         </span>
         <button id="btn-close-acetate-footer" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs cursor-pointer">
           Cerrar
@@ -543,7 +509,9 @@
   <!-- ÁREA DE IMPRESIÓN OCULTA (SOLO SE MUESTRA AL ENVIAR A IMPRIMIR) -->
   <div id="print-staging-area" class="hidden"></div>
 
-  <!-- JAVASCRIPT VANILLA -->
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT VANILLA COMPLETO                               -->
+  <!-- ========================================================= -->
   <script>
     // Sintetizador Web Audio API local
     let audioCtx = null;
@@ -582,16 +550,16 @@
 
     function playSuccess() {
       if (!isSoundOn) return;
-      playTone(523.25, 0.15, 'triangle', 0.15); // C5
-      setTimeout(() => playTone(659.25, 0.15, 'triangle', 0.15), 100); // E5
-      setTimeout(() => playTone(783.99, 0.25, 'triangle', 0.18), 200); // G5
-      setTimeout(() => playTone(1046.50, 0.35, 'triangle', 0.2), 300); // C6
+      playTone(523.25, 0.15, 'triangle', 0.15);
+      setTimeout(() => playTone(659.25, 0.15, 'triangle', 0.15), 90);
+      setTimeout(() => playTone(783.99, 0.22, 'triangle', 0.18), 180);
+      setTimeout(() => playTone(1046.50, 0.32, 'triangle', 0.2), 270);
     }
 
     function playRetry() {
       if (!isSoundOn) return;
       playTone(440, 0.15, 'sine', 0.08);
-      setTimeout(() => playTone(392, 0.25, 'sine', 0.08), 120);
+      setTimeout(() => playTone(392, 0.25, 'sine', 0.08), 110);
     }
 
     function playClick() {
@@ -693,57 +661,52 @@
 
     const LAYERS_INFO = ALL_ACETATE_SHEETS.filter(s => s.id > 0);
 
-    /*
-      ==================================================================
-      BASE DE DATOS DE ETIQUETAS ANATÓMICAS POR CAPA (COORDENADAS EXACTAS)
-      Porcentajes referenciados al lienzo 2752 x 1536 (donde x: 50% es el eje vertical)
-      ==================================================================
-    */
+    // BASE DE DATOS DE ETIQUETAS ANATÓMICAS POR CAPA (COORDENADAS EXACTAS 2752x1536)
     const ANATOMY_LABELS_DATA = {
-      0: [ // Base
+      0: [
         { name: 'Cabeza y Semblante', x: 50, y: 8, side: 'right', info: 'Postura erguida con mirada al frente' },
         { name: 'Tórax y Tronco', x: 50, y: 28, side: 'left', info: 'Eje axial del cuerpo humano' },
         { name: 'Palmas hacia el Frente', x: 37, y: 53, side: 'left', info: 'Posición anatómica estándar universal' },
         { name: 'Extremidades Inferiores', x: 47, y: 76, side: 'left', info: 'Piernas rectas ligeramente separadas' }
       ],
-      1: [ // Muscular
+      1: [
         { name: 'Pectoral Mayor', x: 47.5, y: 27, side: 'left', info: 'Músculo del pecho para empujar y mover brazos' },
         { name: 'Bíceps Braquial', x: 42, y: 34, side: 'left', info: 'Flexiona el brazo y levanta objetos' },
         { name: 'Recto del Abdomen', x: 50, y: 38, side: 'right', info: 'Abdominales que protegen y flexionan el tronco' },
         { name: 'Cuádriceps', x: 46.5, y: 62, side: 'left', info: 'Potente músculo del muslo para correr y saltar' },
         { name: 'Gemelos (Pantorrilla)', x: 46.5, y: 81, side: 'left', info: 'Músculo de la pierna para impulsarse al caminar' }
       ],
-      2: [ // Respiratorio
+      2: [
         { name: 'Cavidad Nasal / Faringe', x: 50, y: 13, side: 'right', info: 'Calienta y filtra el aire inhalado' },
         { name: 'Tráquea Anillada', x: 50, y: 20, side: 'left', info: 'Tubo cartilaginoso que conduce el aire' },
         { name: 'Pulmones', x: 53, y: 27, side: 'right', info: 'Intercambian oxígeno por dióxido de carbono' },
         { name: 'Diafragma', x: 50, y: 34, side: 'left', info: 'Músculo que se contrae para permitir la respiración' }
       ],
-      3: [ // Circulatorio
+      3: [
         { name: 'Corazón', x: 51.5, y: 28, side: 'right', info: 'Bomba muscular que late 100,000 veces al día' },
         { name: 'Arteria Aorta (Roja)', x: 49.5, y: 24, side: 'left', info: 'Lleva sangre rica en oxígeno a todo el cuerpo' },
         { name: 'Vena Cava (Azul)', x: 50.5, y: 36, side: 'right', info: 'Retorna la sangre usada al corazón' },
         { name: 'Vasos Femorales', x: 48, y: 64, side: 'left', info: 'Red de irrigación en las piernas' }
       ],
-      4: [ // Digestivo
+      4: [
         { name: 'Esófago', x: 50, y: 21, side: 'left', info: 'Tubo que transporta la comida de la boca al estómago' },
         { name: 'Hígado', x: 48, y: 33, side: 'left', info: 'Órgano que produce bilis y filtra toxinas' },
         { name: 'Estómago', x: 52, y: 33, side: 'right', info: 'Descompone los alimentos con ácidos y enzimas' },
         { name: 'Intestino Delgado', x: 50, y: 42, side: 'right', info: 'Tubo de 6 a 7 metros que absorbe los nutrientes' },
         { name: 'Intestino Grueso (Colon)', x: 50, y: 48, side: 'left', info: 'Absorbe agua y forma los desechos' }
       ],
-      5: [ // Nervioso
+      5: [
         { name: 'Cerebro / Encéfalo', x: 50, y: 9.5, side: 'right', info: 'Supercomputadora que procesa pensamientos y sentidos' },
         { name: 'Médula Espinal', x: 50, y: 28, side: 'left', info: 'Autopista central de señales nerviosas' },
         { name: 'Plexo Braquial (Brazos)', x: 44, y: 30, side: 'left', info: 'Nervios que controlan el movimiento de las manos' },
         { name: 'Nervio Ciático (Piernas)', x: 52, y: 63, side: 'right', info: 'El nervio más largo y grueso del cuerpo' }
       ],
-      6: [ // Reproductor
+      6: [
         { name: 'Riñones', x: 48, y: 36, side: 'left', info: 'Filtran la sangre y producen la orina' },
         { name: 'Uréteres', x: 51.5, y: 41, side: 'right', info: 'Conductos que llevan la orina a la vejiga' },
         { name: 'Aparato Reproductor / Vejiga', x: 50, y: 49, side: 'left', info: 'Órganos pélvicos y de continuidad de la vida' }
       ],
-      7: [ // Óseo
+      7: [
         { name: 'Cráneo', x: 50, y: 10, side: 'right', info: 'Caja ósea que protege el cerebro' },
         { name: 'Caja Torácica (Costillas)', x: 50, y: 28, side: 'left', info: 'Protegen el corazón y los pulmones' },
         { name: 'Columna Vertebral', x: 50, y: 36, side: 'right', info: 'Eje de 33 vértebras que permite erguirnos' },
@@ -762,10 +725,10 @@
       { layerId: 5, q: '¿Qué sistema actúa como supercomputadora con el cerebro?', hint: 'Envía órdenes eléctricas veloces por la médula espinal.' }
     ];
 
+    // ESTADO INICIAL: ÚNICAMENTE EL CUERPO BASE ACTIVO (1 a 7 = FALSE)
     let layerStack = [1, 2, 3, 4, 5, 6, 7];
-    let layerActive = { 1: true, 2: false, 3: false, 4: true, 5: false, 6: false, 7: true };
-    // Opacidades individuales para cada sistema (Capa 1 a 7)
-    // Requerimiento: Valor por defecto de 70% (0.7) para simular acetatos translúcidos reales
+    let layerActive = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false };
+    // Opacidad por defecto de 70% (0.7) en acetatos
     let layerOpacities = { 1: 70, 2: 70, 3: 70, 4: 70, 5: 70, 6: 70, 7: 70 };
     let areLabelsOn = false;
     let activeHotspotKey = null;
@@ -798,11 +761,8 @@
 
         for (let y = 0; y < h; y++) {
           const isOuterY = y < minY || y > maxY;
-          const rowOffset = y * w * 4;
-
           for (let x = 0; x < w; x++) {
-            const idx = rowOffset + x * 4;
-
+            const idx = (y * w + x) * 4;
             if (isOuterY || x < minX || x > maxX) {
               data[idx + 3] = 0;
               continue;
@@ -827,14 +787,7 @@
         }
 
         ctx.putImageData(imgData, 0, 0);
-
-        canvas.toBlob((blob) => {
-          if (blob) {
-            callback(URL.createObjectURL(blob));
-          } else {
-            callback(canvas.toDataURL('image/png'));
-          }
-        }, 'image/png');
+        callback(canvas.toDataURL('image/png'));
       };
 
       img.onerror = () => {
@@ -856,6 +809,7 @@
       });
     }
 
+    // Referencias al DOM
     const sliderBase = document.getElementById('slider-base-opacity');
     const baseValText = document.getElementById('base-opacity-val');
     const layerImg0 = document.getElementById('layer-img-0');
@@ -914,19 +868,13 @@
       });
     }
 
-    /*
-      ==================================================================
-      SISTEMA DE ETIQUETAS ANATÓMICAS INTERACTIVAS (HOTSPOTS / PINES)
-      Muestra pines luminosos limpios y despliega la tarjeta conectada
-      con flecha estrictamente dentro de los límites del visor.
-      ==================================================================
-    */
+    // RENDERIZADO DE PINES Y HOTSPOTS INTERACTIVOS
     function renderLabels() {
       if (!areLabelsOn) {
         labelsOverlay.style.opacity = '0';
         labelsOverlay.style.pointerEvents = 'none';
         labelsOverlay.innerHTML = '';
-        renderActiveTooltip();
+        renderOrganPopup();
         return;
       }
 
@@ -934,13 +882,11 @@
       labelsOverlay.style.opacity = '1';
       labelsOverlay.style.pointerEvents = 'auto';
 
-      // Determinar qué capas activas tienen etiquetas que mostrar
       const activeIds = [];
       const reversed = [...layerStack].reverse();
       reversed.forEach((id) => {
         if (layerActive[id]) activeIds.push(id);
       });
-      // Si la base está al 100% y no hay capas activas, mostrar etiquetas de la base
       if (activeIds.length === 0 && Number(sliderBase.value) > 30) {
         activeIds.push(0);
       }
@@ -961,20 +907,19 @@
           pinWrapper.style.zIndex = isSelected ? '45' : '30';
 
           pinWrapper.innerHTML = `
-            <!-- PUNTO INTERACTIVO / PIN LUMINOSO (HOTSPOT) -->
-            <button type="button" class="hotspot-btn relative flex items-center justify-center cursor-pointer transition-all duration-200 outline-none ${isSelected ? 'scale-125' : 'hover:scale-125 active:scale-95'}" style="width: 22px; height: 22px;" data-key="${key}" title="Toca para explorar: ${item.name}">
-              <!-- Onda concéntrica pulsante -->
-              <span class="pin-pulse-circle absolute w-full h-full rounded-full opacity-70" style="background-color: ${layerMeta.color};"></span>
-
-              <!-- Aro exterior blanco de alto contraste -->
-              <span class="relative flex items-center justify-center w-4 h-4 rounded-full bg-white shadow-md border-2" style="border-color: ${layerMeta.color};">
-                <!-- Punto central del color del sistema -->
-                <span class="w-2 h-2 rounded-full transition-transform" style="background-color: ${layerMeta.color}; transform: ${isSelected ? 'scale(1.2)' : 'scale(1)'};"></span>
+            <button
+              type="button"
+              class="hotspot-btn relative flex items-center justify-center cursor-pointer transition-all duration-200 outline-none ${isSelected ? 'scale-125' : 'hover:scale-125 active:scale-95'}"
+              style="width: 22px; height: 22px;"
+              title="Toca para explorar: ${item.name}"
+            >
+              <span class="pin-pulse-circle absolute w-full h-full rounded-full opacity-70" style="background-color: ${layerMeta.color}"></span>
+              <span class="relative flex items-center justify-center w-4 h-4 rounded-full bg-white shadow-md border-2 transition-colors" style="border-color: ${layerMeta.color}">
+                <span class="w-2 h-2 rounded-full transition-transform ${isSelected ? 'scale-125' : 'scale-100'}" style="background-color: ${layerMeta.color}"></span>
               </span>
             </button>
           `;
 
-          // Evento de clic en el hotspot
           const hotspotBtn = pinWrapper.querySelector('.hotspot-btn');
           if (hotspotBtn) {
             hotspotBtn.onclick = (e) => {
@@ -989,34 +934,30 @@
         });
       });
 
-      renderOrganInfoBar();
+      renderOrganPopup();
     }
 
-    /*
-      ==================================================================
-      PANEL DE INFORMACIÓN EXTERNO PARA ETIQUETAS (FUERA DEL MODELO)
-      Mantiene el cuerpo humano 100% despejado y facilita la lectura.
-      ==================================================================
-    */
-    function renderOrganInfoBar() {
-      const bar = document.getElementById('organ-info-bar');
-      if (!bar) return;
+    // POP-UP / TARJETA FLOTANTE DE INFORMACIÓN DE PINES (COMPLETA Y SIN RECORTES)
+    function renderOrganPopup() {
+      const popup = document.getElementById('organ-popup-card');
+      const hintPill = document.getElementById('labels-hint-pill');
+      if (!popup) return;
 
       if (!activeHotspotKey || !areLabelsOn) {
-        bar.innerHTML = `
-          <div class="flex items-center justify-between w-full text-slate-500 text-[11px] sm:text-xs px-1 max-w-5xl mx-auto">
-            <div class="flex items-center gap-1.5 truncate">
-              <span class="text-amber-500 font-bold shrink-0">💡</span>
-              <span class="truncate font-medium text-slate-600">
-                ${areLabelsOn ? 'Toca cualquier pin interactivo sobre el cuerpo para examinar el órgano.' : 'Activa "🏷️ Etiquetas" para ver los puntos interactivos del atlas anatómico.'}
-              </span>
-            </div>
-            <span class="hidden sm:inline-block text-[10px] font-semibold text-slate-400 shrink-0 bg-slate-100 px-2 py-0.5 rounded-full">
-              Vista 100% Despejada
-            </span>
-          </div>
-        `;
+        popup.classList.add('hidden');
+        popup.innerHTML = '';
+        if (hintPill) {
+          if (areLabelsOn) {
+            hintPill.classList.remove('hidden');
+          } else {
+            hintPill.classList.add('hidden');
+          }
+        }
         return;
+      }
+
+      if (hintPill) {
+        hintPill.classList.add('hidden');
       }
 
       const [layerIdStr, idxStr] = activeHotspotKey.split('-');
@@ -1025,48 +966,59 @@
       const labels = ANATOMY_LABELS_DATA[layerId] || [];
       const item = labels[idx];
       if (!item) {
-        bar.innerHTML = '';
+        popup.classList.add('hidden');
+        popup.innerHTML = '';
         return;
       }
 
       const layerMeta = ALL_ACETATE_SHEETS.find(s => s.id === layerId) || { color: '#6366F1', short: 'Atlas', name: 'Atlas', emoji: '👤' };
 
-      bar.innerHTML = `
-        <div class="flex items-center justify-between gap-2 w-full animate-fadeIn max-w-5xl mx-auto">
-          <div class="flex items-center gap-2 min-w-0 flex-1">
-            <!-- Badge distintivo del sistema -->
-            <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-lg shrink-0 flex items-center gap-1 shadow-xs" style="background-color: ${layerMeta.color}15; color: ${layerMeta.color}; border: 1px solid ${layerMeta.color}40;">
-              <span class="text-xs">${layerMeta.emoji || '🏷️'}</span>
+      popup.classList.remove('hidden');
+      popup.innerHTML = `
+        <div class="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-2xl border-2 border-slate-200/90 flex flex-col gap-2.5">
+          <!-- Encabezado: Badge del sistema y Botón Cerrar ✕ -->
+          <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-2">
+            <div class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-xl flex items-center gap-1.5 shadow-2xs" style="background-color: ${layerMeta.color}15; color: ${layerMeta.color}; border: 1px solid ${layerMeta.color}40;">
+              <span class="text-base">${layerMeta.emoji || '🏷️'}</span>
               <span>${layerMeta.short}</span>
-            </span>
-
-            <!-- Nombre y descripción del órgano -->
-            <div class="min-w-0 flex-1 flex flex-col sm:flex-row sm:items-baseline sm:gap-2 leading-tight">
-              <span class="font-extrabold text-xs sm:text-sm text-slate-900 truncate shrink-0">
-                ${item.name}:
-              </span>
-              <span class="text-[11px] sm:text-xs text-slate-600 line-clamp-1 sm:line-clamp-2 font-medium">
-                ${item.info}
-              </span>
             </div>
+
+            <button type="button" id="btn-close-popup" class="w-7 h-7 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer text-sm font-bold" title="Cerrar ficha">
+              ✕
+            </button>
           </div>
 
-          <!-- Botón Cerrar -->
-          <button type="button" id="btn-close-organ-bar" class="p-1 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer shrink-0 text-xs font-bold leading-none" title="Deseleccionar órgano">
-            ✕
-          </button>
+          <!-- Nombre principal del órgano -->
+          <h3 class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">
+            ${item.name}
+          </h3>
+
+          <!-- Descripción didáctica completa sin truncar -->
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+            ${item.info}
+          </p>
+
+          <!-- Pie con indicador de capa y botón Entendido -->
+          <div class="pt-1 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-100">
+            <span class="font-semibold text-slate-500">Capa: ${layerMeta.name}</span>
+            <button type="button" id="btn-dismiss-popup" class="px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs cursor-pointer transition-colors">
+              Entendido
+            </button>
+          </div>
         </div>
       `;
 
-      const btnClose = document.getElementById('btn-close-organ-bar');
-      if (btnClose) {
-        btnClose.onclick = (e) => {
-          e.stopPropagation();
-          playClick();
-          activeHotspotKey = null;
-          renderLabels();
-        };
-      }
+      const closeHandler = (e) => {
+        e.stopPropagation();
+        playClick();
+        activeHotspotKey = null;
+        renderLabels();
+      };
+
+      const btnClose = document.getElementById('btn-close-popup');
+      if (btnClose) btnClose.onclick = closeHandler;
+      const btnDismiss = document.getElementById('btn-dismiss-popup');
+      if (btnDismiss) btnDismiss.onclick = closeHandler;
     }
 
     function updateView() {
@@ -1122,55 +1074,37 @@
             </div>
           </div>
 
-          <!-- Fila inferior: Slider individual de opacidad (Default: 70%) -->
-          <div class="pt-2 border-t border-slate-200/60 flex flex-col gap-1">
-            <div class="flex items-center justify-between text-[11px]">
-              <span class="font-semibold text-slate-600">Opacidad de Acetato:</span>
-              <div class="flex items-center gap-1.5">
-                <span class="opacity-val-badge font-mono font-bold text-indigo-700 bg-white px-1.5 py-0.5 rounded border border-slate-200">${currentOp}%</span>
-                <button type="button" class="btn-reset-70 text-[9px] px-1.5 py-0.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded cursor-pointer transition-colors" title="Restablecer a 70% por defecto">
-                  70% std
-                </button>
-              </div>
-            </div>
-            <input type="range" min="0" max="100" value="${currentOp}" class="layer-opacity-slider w-full accent-indigo-600 cursor-pointer h-1.5 bg-slate-200 rounded-lg">
+          <!-- Slider individual de opacidad (Default 70%) -->
+          <div class="flex items-center gap-2 pt-1 border-t border-slate-200/60">
+            <span class="text-[10px] font-semibold text-slate-500 w-14 shrink-0">Opacidad:</span>
+            <input type="range" min="10" max="100" value="${currentOp}" class="layer-slider flex-1 h-1.5 accent-indigo-600 bg-slate-200 rounded-lg cursor-pointer">
+            <span class="layer-op-val text-[11px] font-mono font-bold text-indigo-700 w-8 text-right shrink-0">${currentOp}%</span>
           </div>
         `;
 
         const chk = row.querySelector('input[type="checkbox"]');
-        chk.onchange = () => {
+        chk.onchange = (e) => {
           playClick();
-          layerActive[layerId] = chk.checked;
-          if (chk.checked && layerOpacities[layerId] === undefined) {
-            layerOpacities[layerId] = 70;
-          }
+          layerActive[layerId] = e.target.checked;
           updateView();
         };
 
-        const slider = row.querySelector('.layer-opacity-slider');
-        const badge = row.querySelector('.opacity-val-badge');
-        slider.oninput = () => {
-          layerOpacities[layerId] = Number(slider.value);
-          badge.innerText = slider.value + '%';
+        const slider = row.querySelector('.layer-slider');
+        const valSpan = row.querySelector('.layer-op-val');
+        slider.oninput = (e) => {
+          const val = Number(e.target.value);
+          layerOpacities[layerId] = val;
+          valSpan.innerText = val + '%';
           const img = document.getElementById(`layer-img-${layerId}`);
           if (img && layerActive[layerId]) {
-            img.style.opacity = (layerOpacities[layerId] / 100);
+            img.style.opacity = val / 100;
           }
-        };
-
-        const btnReset = row.querySelector('.btn-reset-70');
-        btnReset.onclick = () => {
-          playClick();
-          layerOpacities[layerId] = 70;
-          slider.value = 70;
-          badge.innerText = '70%';
-          updateView();
         };
 
         const btnUp = row.querySelector('.btn-up');
         btnUp.onclick = () => {
-          playClick();
           if (originalIndex < layerStack.length - 1) {
+            playClick();
             const temp = layerStack[originalIndex];
             layerStack[originalIndex] = layerStack[originalIndex + 1];
             layerStack[originalIndex + 1] = temp;
@@ -1180,8 +1114,8 @@
 
         const btnDown = row.querySelector('.btn-down');
         btnDown.onclick = () => {
-          playClick();
           if (originalIndex > 0) {
+            playClick();
             const temp = layerStack[originalIndex];
             layerStack[originalIndex] = layerStack[originalIndex - 1];
             layerStack[originalIndex - 1] = temp;
@@ -1193,59 +1127,116 @@
       });
     }
 
+    // MODO QUIZ DIDÁCTICO
+    function renderQuizQuestion() {
+      const item = QUIZ_LIST[quizIdx % QUIZ_LIST.length];
+      quizCardStep.innerText = `Reto ${(quizIdx % QUIZ_LIST.length) + 1} de ${QUIZ_LIST.length}`;
+      quizCardScore.innerText = `${quizScore} Aciertos`;
+      quizCardQuestion.innerText = item.q;
+      quizCardHint.innerHTML = `<strong>Pista:</strong> ${item.hint}`;
+      quizMinNum.innerText = `Reto ${(quizIdx % QUIZ_LIST.length) + 1}:`;
+      quizMinQ.innerText = item.q;
+
+      quizCardFeedback.className = 'hidden p-2 rounded-xl text-xs font-bold';
+      quizCardFeedback.innerText = '';
+
+      quizCardOptions.innerHTML = '';
+      LAYERS_INFO.forEach((layer) => {
+        const btn = document.createElement('button');
+        btn.className = 'p-1.5 sm:p-2 text-[11px] sm:text-xs font-bold text-left rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-slate-800 transition-all cursor-pointer truncate';
+        btn.innerHTML = `${layer.id}. ${layer.short}`;
+        btn.onclick = () => handleAnswerQuiz(layer.id, item.layerId);
+        quizCardOptions.appendChild(btn);
+      });
+    }
+
+    function handleAnswerQuiz(chosenId, targetId) {
+      if (chosenId === targetId) {
+        playSuccess();
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 80,
+            spread: 70,
+            origin: { y: 0.55 },
+            colors: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6']
+          });
+        }
+        quizScore++;
+        layerActive[targetId] = true;
+        updateView();
+
+        quizCardFeedback.className = 'p-2 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+        quizCardFeedback.innerText = '¡Excelente! ¡Lo has identificado a la perfección!';
+
+        setTimeout(() => {
+          quizIdx++;
+          renderQuizQuestion();
+        }, 1500);
+      } else {
+        playRetry();
+        quizCardFeedback.className = 'p-2 rounded-xl text-xs font-bold bg-sky-100 text-sky-900 border border-sky-300 block';
+        quizCardFeedback.innerText = '¡Casi! Puedes consultar las capas en la barra inferior y volver a probar.';
+      }
+    }
+
+    // CATÁLOGO DE ACETATOS PARA DESCARGA E IMPRESIÓN
     function renderAcetateCatalog() {
       sheetsGrid.innerHTML = '';
-
       ALL_ACETATE_SHEETS.forEach((sheet) => {
         const card = document.createElement('div');
-        card.className = 'p-3 bg-white rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between gap-2.5 hover:border-indigo-300 transition-colors';
-
+        card.className = 'bg-white p-3 sm:p-4 rounded-2xl border border-slate-200 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-between gap-3';
+        
         card.innerHTML = `
           <div>
-            <div class="flex items-center justify-between gap-2 mb-1.5">
-              <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-mono">
-                ${sheet.numberLabel}
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg flex items-center gap-1" style="background-color: ${sheet.color}15; color: ${sheet.color}">
+                <span>${sheet.emoji}</span>
+                <span>${sheet.numberLabel}</span>
               </span>
-              <span class="text-[10px] font-bold text-slate-400">
-                2752 × 1536 px
-              </span>
+              <span class="text-[10px] font-mono text-slate-400">2752 × 1536</span>
             </div>
             
-            <h4 class="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+            <h4 class="font-extrabold text-sm text-slate-900 leading-snug">
               ${sheet.name}
             </h4>
-            <p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+            
+            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
               ${sheet.desc}
             </p>
-
-            <div class="mt-2 w-full aspect-video rounded-xl bg-slate-50 border border-slate-200 overflow-hidden relative flex items-center justify-center group">
-              <img src="${sheet.file}" alt="${sheet.name}" class="w-full h-full object-contain pointer-events-none">
-              <span class="absolute bottom-1 right-2 text-[9px] bg-slate-900/70 text-white px-1.5 py-0.5 rounded backdrop-blur-xs font-mono">
-                Con Marcas de Registro
-              </span>
-            </div>
           </div>
 
-          <div class="pt-2 border-t border-slate-100 flex items-center gap-1.5">
-            <button class="btn-download-single flex-1 py-1.5 px-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl flex items-center justify-center gap-1 transition-colors cursor-pointer" title="Descargar lámina JPG individual">
-              <span>⬇️</span>
-              <span>Descargar</span>
-            </button>
-            <button class="btn-print-single flex-1 py-1.5 px-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1 transition-colors cursor-pointer" title="Mandar a imprimir únicamente esta lámina">
-              <span>🖨️</span>
-              <span>Imprimir</span>
-            </button>
+          <div class="space-y-2">
+            <!-- Miniatura de previsualización -->
+            <div class="w-full h-24 bg-slate-50 rounded-xl overflow-hidden border border-slate-100 flex items-center justify-center p-1">
+              <img src="${sheet.file}" alt="${sheet.name}" class="w-full h-full object-contain" onerror="this.src='/${sheet.file}'">
+            </div>
+
+            <!-- Botones individuales -->
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <button class="btn-download-single flex items-center justify-center gap-1 py-1.5 px-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-xl text-xs cursor-pointer transition-colors" title="Descargar imagen JPG en alta resolución">
+                <span>⬇️</span>
+                <span>Descargar</span>
+              </button>
+              
+              <button class="btn-print-single flex items-center justify-center gap-1 py-1.5 px-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs cursor-pointer transition-colors" title="Imprimir lámina individual">
+                <span>🖨️</span>
+                <span>Imprimir</span>
+              </button>
+            </div>
           </div>
         `;
 
-        const btnDl = card.querySelector('.btn-download-single');
-        btnDl.onclick = () => {
+        card.querySelector('.btn-download-single').onclick = () => {
           playClick();
-          downloadSingleFile(sheet.file, `Acetato_${sheet.slug}.jpg`);
+          const a = document.createElement('a');
+          a.href = sheet.file;
+          a.download = `Acetato_${sheet.slug}.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
         };
 
-        const btnPr = card.querySelector('.btn-print-single');
-        btnPr.onclick = () => {
+        card.querySelector('.btn-print-single').onclick = () => {
           playClick();
           printSingleSheet(sheet);
         };
@@ -1254,23 +1245,14 @@
       });
     }
 
-    function downloadSingleFile(url, fileName) {
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-
     function printSingleSheet(sheet) {
       printStaging.innerHTML = `
         <div class="page-break flex flex-col items-center justify-center p-4">
-          <div class="text-center mb-2">
-            <h2 class="text-sm font-bold text-slate-800">${sheet.name} — Guía de Acetato</h2>
-            <p class="text-[10px] text-slate-500">Haz coincidir las 4 cruces de las esquinas. Margen de perforación a la izquierda.</p>
+          <div style="text-align: center; margin-bottom: 8px;">
+            <h2 style="font-size: 16px; font-weight: bold; color: #1e293b;">${sheet.name} — Lámina de Acetato</h2>
+            <p style="font-size: 11px; color: #64748b;">Alinear con las 4 cruces de registro en esquinas • Margen de perforación a la izquierda</p>
           </div>
-          <div class="w-[95vw] h-[85vh] flex items-center justify-center">
+          <div style="width: 95vw; height: 85vh; display: flex; align-items: center; justify-content: center;">
             <img src="${sheet.file}" alt="${sheet.name}" style="width: 100%; height: 100%; object-fit: contain;">
           </div>
         </div>
@@ -1284,11 +1266,11 @@
       ALL_ACETATE_SHEETS.forEach((sheet) => {
         html += `
           <div class="page-break flex flex-col items-center justify-center p-4">
-            <div class="text-center mb-2">
-              <h2 class="text-sm font-bold text-slate-800">${sheet.numberLabel}: ${sheet.name}</h2>
-              <p class="text-[10px] text-slate-500">Cruces de registro en esquinas • Margen de perforación a la izquierda</p>
+            <div style="text-align: center; margin-bottom: 8px;">
+              <h2 style="font-size: 16px; font-weight: bold; color: #1e293b;">${sheet.numberLabel}: ${sheet.name}</h2>
+              <p style="font-size: 11px; color: #64748b;">Cruces de registro en esquinas • Margen de encuadernación punteado a la izquierda</p>
             </div>
-            <div class="w-[95vw] h-[85vh] flex items-center justify-center">
+            <div style="width: 95vw; height: 85vh; display: flex; align-items: center; justify-content: center;">
               <img src="${sheet.file}" alt="${sheet.name}" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
           </div>
@@ -1298,134 +1280,67 @@
       window.print();
     }
 
-    async function downloadAllAsZip() {
+    async function downloadAllZip() {
       playClick();
+      const btnZip = document.getElementById('btn-download-all-zip');
       const btnLabel = document.getElementById('btn-zip-label');
-      const originalText = btnLabel.innerText;
-      btnLabel.innerText = 'Generando ZIP...';
+      if (typeof JSZip === 'undefined') {
+        alert('Cargando librería de compresión...');
+        return;
+      }
+
+      btnLabel.innerText = 'Empacando láminas...';
+      btnZip.disabled = true;
 
       try {
-        if (typeof JSZip === 'undefined') {
-          throw new Error('JSZip no disponible');
-        }
-
         const zip = new JSZip();
-        const folder = zip.folder("Acetatos_Clase_de_Anatomia_Aldebaran");
+        const folder = zip.folder('Acetatos_Anatomia_Aldebaran');
 
         for (let i = 0; i < ALL_ACETATE_SHEETS.length; i++) {
           const sheet = ALL_ACETATE_SHEETS[i];
           btnLabel.innerText = `Empacando ${i + 1}/8...`;
           const response = await fetch(sheet.file);
           const blob = await response.blob();
-          const cleanName = `${sheet.id}_${sheet.slug}.jpg`;
-          folder.file(cleanName, blob);
+          folder.file(`${sheet.id}_${sheet.slug}.jpg`, blob);
         }
 
-        btnLabel.innerText = 'Comprimiendo...';
+        btnLabel.innerText = 'Generando ZIP...';
         const zipContent = await zip.generateAsync({ type: 'blob' });
-        
         const url = URL.createObjectURL(zipContent);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'Acetatos_Clase_de_Anatomia_Aldebaran.zip';
+        a.download = 'Acetatos_Clases_Anatomia_Aldebaran.zip';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
 
         playSuccess();
-        btnLabel.innerText = '¡Descarga Completa!';
+        btnLabel.innerText = '¡Descarga completa!';
         setTimeout(() => {
-          btnLabel.innerText = originalText;
-        }, 2500);
-
+          btnLabel.innerText = 'Descargar Paquete Completo (ZIP)';
+          btnZip.disabled = false;
+        }, 2000);
       } catch (err) {
-        console.warn('Fallback a descarga secuencial:', err);
+        console.warn('Fallback de descarga:', err);
         btnLabel.innerText = 'Descargando...';
         for (const sheet of ALL_ACETATE_SHEETS) {
-          downloadSingleFile(sheet.file, `Acetato_${sheet.slug}.jpg`);
-          await new Promise(r => setTimeout(r, 400));
+          const a = document.createElement('a');
+          a.href = sheet.file;
+          a.download = `Acetato_${sheet.slug}.jpg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          await new Promise(r => setTimeout(r, 300));
         }
-        btnLabel.innerText = originalText;
+        btnLabel.innerText = 'Descargar Paquete Completo (ZIP)';
+        btnZip.disabled = false;
       }
     }
 
-    function renderQuiz() {
-      if (!isQuizActive) {
-        quizContainer.classList.add('hidden');
-        return;
-      }
-      quizContainer.classList.remove('hidden');
-
-      if (isQuizMinimized) {
-        quizMinBar.classList.remove('hidden');
-        quizExpCard.classList.add('hidden');
-      } else {
-        quizMinBar.classList.add('hidden');
-        quizExpCard.classList.remove('hidden');
-      }
-
-      const q = QUIZ_LIST[quizIdx % QUIZ_LIST.length];
-      quizMinNum.innerText = `Reto ${(quizIdx % QUIZ_LIST.length) + 1}:`;
-      quizMinQ.innerText = q.q;
-
-      quizCardStep.innerText = `Reto ${(quizIdx % QUIZ_LIST.length) + 1} de ${QUIZ_LIST.length}`;
-      quizCardScore.innerText = `${quizScore} Aciertos`;
-      quizCardQuestion.innerText = q.q;
-      quizCardHint.innerHTML = `<strong>Pista:</strong> ${q.hint}`;
-
-      quizCardOptions.innerHTML = '';
-      LAYERS_INFO.forEach((layer) => {
-        const btn = document.createElement('button');
-        btn.className = 'p-1.5 sm:p-2 text-[11px] sm:text-xs font-bold text-left rounded-xl bg-slate-50 hover:bg-amber-50 border border-slate-200 hover:border-amber-300 text-slate-800 transition-all cursor-pointer truncate';
-        btn.innerText = `${layer.id}. ${layer.short}`;
-        btn.onclick = () => checkQuiz(layer.id);
-        quizCardOptions.appendChild(btn);
-      });
-    }
-
-    function checkQuiz(layerId) {
-      const q = QUIZ_LIST[quizIdx % QUIZ_LIST.length];
-      if (layerId === q.layerId) {
-        playSuccess();
-        if (typeof confetti === 'function') {
-          confetti({
-            particleCount: 85,
-            spread: 75,
-            origin: { y: 0.55 },
-            colors: ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6']
-          });
-        }
-        quizScore++;
-        layerActive[layerId] = true;
-        updateView();
-
-        quizCardFeedback.className = 'p-2 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-bold flex items-center gap-2';
-        quizCardFeedback.innerText = '¡Excelente! ¡Lo has identificado a la perfección!';
-        quizCardFeedback.classList.remove('hidden');
-
-        setTimeout(() => {
-          quizIdx++;
-          quizCardFeedback.classList.add('hidden');
-          renderQuiz();
-        }, 1500);
-      } else {
-        playRetry();
-        const phrases = [
-          '¡Casi! Puedes consultar las capas en la barra inferior y volver a probar.',
-          '¡Buen intento! Revisa el cuerpo humano para encontrar la pista.',
-          '¡Estás muy cerca! Explora las capas libremente antes de contestar.'
-        ];
-        quizCardFeedback.className = 'p-2 rounded-xl bg-sky-100 border border-sky-300 text-sky-900 text-xs font-semibold';
-        quizCardFeedback.innerText = phrases[Math.floor(Math.random() * phrases.length)];
-        quizCardFeedback.classList.remove('hidden');
-      }
-    }
-
+    // EVENT LISTENERS DE CONTROLES
     sliderBase.oninput = () => {
-      layerImg0.style.opacity = sliderBase.value / 100;
-      baseValText.innerText = sliderBase.value + '%';
-      if (areLabelsOn) renderLabels();
+      updateView();
     };
 
     btnSound.onclick = () => {
@@ -1433,124 +1348,115 @@
       soundIcon.innerText = isSoundOn ? '🔊' : '🔇';
     };
 
-    // BOTÓN TOGGLE: MOSTRAR / OCULTAR ETIQUETAS ANATÓMICAS
     btnToggleLabels.onclick = () => {
-      playClick();
       areLabelsOn = !areLabelsOn;
+      playClick();
       if (areLabelsOn) {
-        btnToggleLabels.className = 'flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-violet-600 text-white text-xs font-bold transition-all cursor-pointer shadow-xs ring-2 ring-violet-300';
+        btnToggleLabels.className = 'flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-violet-600 text-white shadow-xs ring-2 ring-violet-300 text-xs font-bold transition-all cursor-pointer';
         labelsBtnText.innerText = 'Ocultar Etiquetas';
-        labelsBtnTextSm.innerText = 'Etiquetas ON';
+        labelsBtnTextSm.innerText = 'Pines ON';
       } else {
-        activeHotspotKey = null;
-        btnToggleLabels.className = 'flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition-all cursor-pointer';
+        btnToggleLabels.className = 'flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg sm:rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200 text-xs font-bold transition-all cursor-pointer';
         labelsBtnText.innerText = 'Mostrar Etiquetas';
-        labelsBtnTextSm.innerText = 'Etiquetas OFF';
+        labelsBtnTextSm.innerText = 'Pines';
+        activeHotspotKey = null;
       }
       renderLabels();
     };
 
-    document.getElementById('btn-toggle-quiz').onclick = () => {
-      playClick();
-      isQuizActive = !isQuizActive;
-      isQuizMinimized = false;
-      renderQuiz();
-    };
-
-    document.getElementById('btn-minimize-quiz').onclick = () => {
-      playClick();
-      isQuizMinimized = true;
-      renderQuiz();
-    };
-
-    document.getElementById('btn-expand-quiz').onclick = () => {
-      playClick();
-      isQuizMinimized = false;
-      renderQuiz();
-    };
-
-    document.getElementById('btn-consult-atlas').onclick = () => {
-      playClick();
-      isQuizMinimized = true;
-      renderQuiz();
-    };
-
-    document.getElementById('btn-close-quiz-card').onclick = () => {
-      playClick();
-      isQuizActive = false;
-      renderQuiz();
-    };
-
-    const quickOpenDrawerBtn = document.getElementById('btn-quick-open-drawer');
-    if (quickOpenDrawerBtn) {
-      quickOpenDrawerBtn.onclick = () => {
-        playClick();
-        zdrawerModal.classList.remove('hidden');
-      };
-    }
-
-    document.getElementById('btn-preset-70').onclick = () => {
-      playClick();
-      LAYERS_INFO.forEach(l => layerOpacities[l.id] = 70);
-      updateView();
-    };
-
-    document.getElementById('btn-preset-100').onclick = () => {
-      playClick();
-      LAYERS_INFO.forEach(l => layerOpacities[l.id] = 100);
-      updateView();
-    };
-
-    document.getElementById('btn-open-zdrawer').onclick = () => {
+    document.getElementById('btn-quick-open-drawer').onclick = () => {
       playClick();
       zdrawerModal.classList.remove('hidden');
     };
     document.getElementById('btn-close-zdrawer').onclick = () => {
+      zdrawerModal.classList.add('hidden');
+    };
+    document.getElementById('btn-save-drawer').onclick = () => {
       playClick();
       zdrawerModal.classList.add('hidden');
     };
-    document.getElementById('btn-close-zdrawer-footer').onclick = () => {
+    document.getElementById('btn-reset-order').onclick = () => {
       playClick();
-      zdrawerModal.classList.add('hidden');
-    };
-
-    document.getElementById('btn-select-all').onclick = () => {
-      playClick();
-      LAYERS_INFO.forEach(l => layerActive[l.id] = true);
-      updateView();
-    };
-    document.getElementById('btn-clear-all').onclick = () => {
-      playClick();
-      LAYERS_INFO.forEach(l => layerActive[l.id] = false);
+      layerStack = [1, 2, 3, 4, 5, 6, 7];
       updateView();
     };
 
+    document.getElementById('btn-preset-50').onclick = () => {
+      playClick();
+      LAYERS_INFO.forEach(l => { layerOpacities[l.id] = 50; });
+      updateView();
+    };
+    document.getElementById('btn-preset-70').onclick = () => {
+      playClick();
+      LAYERS_INFO.forEach(l => { layerOpacities[l.id] = 70; });
+      updateView();
+    };
+    document.getElementById('btn-preset-100').onclick = () => {
+      playClick();
+      LAYERS_INFO.forEach(l => { layerOpacities[l.id] = 100; });
+      updateView();
+    };
+
+    // Modal de Acetatos
     document.getElementById('btn-open-acetate').onclick = () => {
       playClick();
       acetateModal.classList.remove('hidden');
     };
     document.getElementById('btn-close-acetate').onclick = () => {
-      playClick();
       acetateModal.classList.add('hidden');
     };
     document.getElementById('btn-close-acetate-footer').onclick = () => {
-      playClick();
       acetateModal.classList.add('hidden');
     };
+    document.getElementById('btn-download-all-zip').onclick = downloadAllZip;
+    document.getElementById('btn-print-all-batch').onclick = printAllSheetsBatch;
 
-    // ==========================================
-    // ZOOM, PAN Y GESTOS TÁCTILES (PINCH-TO-ZOOM)
-    // ==========================================
+    // Modal de Quiz
+    const btnToggleQuiz = document.getElementById('btn-toggle-quiz');
+    if (btnToggleQuiz) {
+      btnToggleQuiz.onclick = () => {
+        playClick();
+        isQuizActive = !isQuizActive;
+        isQuizMinimized = false;
+        if (isQuizActive) {
+          quizContainer.classList.remove('hidden');
+          quizMinBar.classList.add('hidden');
+          quizExpCard.classList.remove('hidden');
+          renderQuizQuestion();
+        } else {
+          quizContainer.classList.add('hidden');
+        }
+      };
+    }
+    document.getElementById('btn-minimize-quiz').onclick = () => {
+      isQuizMinimized = true;
+      quizExpCard.classList.add('hidden');
+      quizMinBar.classList.remove('hidden');
+    };
+    document.getElementById('btn-expand-quiz').onclick = () => {
+      isQuizMinimized = false;
+      quizMinBar.classList.add('hidden');
+      quizExpCard.classList.remove('hidden');
+    };
+    document.getElementById('btn-close-quiz-card').onclick = () => {
+      isQuizActive = false;
+      quizContainer.classList.add('hidden');
+    };
+    document.getElementById('btn-consult-atlas').onclick = () => {
+      isQuizMinimized = true;
+      quizExpCard.classList.add('hidden');
+      quizMinBar.classList.remove('hidden');
+    };
+
+    // =========================================================
+    // SISTEMA DE ZOOM NATIVO: WHEEL + PINCH-TO-ZOOM / ARRASTRE
+    // (SIN BOTONES DE LUPA EN PANTALLA)
+    // =========================================================
     let zoomScale = 1.0;
     let panX = 0;
     let panY = 0;
-
     const viewportStage = document.getElementById('viewport-stage');
     const zoomStage = document.getElementById('zoom-stage');
-    const zoomBadgeText = document.getElementById('zoom-badge-text');
-    const btnZoomIn = document.getElementById('btn-zoom-in');
-    const btnZoomOut = document.getElementById('btn-zoom-out');
-    const btnZoomReset = document.getElementById('btn-zoom-reset');
 
     function clampZoom(z) {
       return Math.min(Math.max(z, 0.75), 4.5);
@@ -1569,12 +1475,6 @@
       if (!zoomStage) return;
       zoomStage.style.transition = animate ? 'transform 0.15s ease-out' : 'none';
       zoomStage.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomScale})`;
-      if (zoomBadgeText) {
-        zoomBadgeText.textContent = `${Math.round(zoomScale * 100)}%`;
-      }
-      if (activeHotspotKey) {
-        renderActiveTooltip();
-      }
     }
 
     function setZoom(nextZoom, animate = true) {
@@ -1598,25 +1498,6 @@
       applyZoomTransform(true);
     }
 
-    if (btnZoomIn) {
-      btnZoomIn.onclick = () => {
-        playClick();
-        setZoom(zoomScale + 0.3, true);
-      };
-    }
-
-    if (btnZoomOut) {
-      btnZoomOut.onclick = () => {
-        playClick();
-        setZoom(zoomScale - 0.3, true);
-      };
-    }
-
-    if (btnZoomReset) {
-      btnZoomReset.onclick = resetZoom;
-    }
-
-    // Gestos táctiles: Pinch-to-zoom, Pan y Doble Toque
     let touchState = {
       count: 0,
       initialDist: 0,
@@ -1628,12 +1509,14 @@
     };
 
     if (viewportStage) {
+      // Zoom con la rueda del ratón
       viewportStage.addEventListener('wheel', (e) => {
         e.preventDefault();
         const delta = e.deltaY < 0 ? 0.2 : -0.2;
         setZoom(zoomScale + delta, true);
       }, { passive: false });
 
+      // Gestos táctiles
       viewportStage.addEventListener('touchstart', (e) => {
         const touches = Array.from(e.touches).map(t => ({ x: t.clientX, y: t.clientY }));
         const now = Date.now();
@@ -1713,7 +1596,7 @@
         }
       });
 
-      // Mouse drag
+      // Arrastre con ratón
       let isMouseDown = false;
       let mouseStartX = 0;
       let mouseStartY = 0;
@@ -1754,15 +1637,14 @@
       });
     }
 
+    // Inicializaciones
     initTransparentLayers();
     renderAcetateCatalog();
     updateView();
 
-    /*
-      ==================================================================
-      0. SPLASH SCREEN CON FONDO BLANCO, LOGO Y PARTÍCULAS (3 SEGUNDOS)
-      ==================================================================
-    */
+    // =========================================================
+    // SPLASH SCREEN FONDO BLANCO CON PARTÍCULAS (3 SEGUNDOS)
+    // =========================================================
     (function initSplashScreen() {
       const splashScreen = document.getElementById('splash-screen');
       const splashCanvas = document.getElementById('splash-canvas');
@@ -1844,11 +1726,7 @@
       }
     })();
 
-    /*
-      ==================================================================
-      OPTIMIZACIÓN PWA PARA ANDROID (INSTALACIÓN Y PANTALLA COMPLETA)
-      ==================================================================
-    */
+    // SOPORTE PWA PARA ANDROID
     let deferredPrompt = null;
     const btnInstallPwa = document.getElementById('btn-install-pwa');
 
@@ -1883,7 +1761,6 @@
       deferredPrompt = null;
     });
 
-    // Registro de Service Worker si está disponible
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch((err) => {
