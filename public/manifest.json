@@ -1,0 +1,32 @@
+{
+  "id": "/",
+  "name": "Las clases de anatomía de Aldebarán",
+  "short_name": "Anatomía",
+  "description": "Aplicación web interactiva de anatomía humana por capas con acetatos translúcidos, etiquetas y quiz escolar.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

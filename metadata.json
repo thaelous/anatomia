@@ -1,0 +1,8 @@
+{
+  "name": "Remix Anatomía Interactiva por Capas",
+  "description": "Aplicación educativa interactiva para explorar los 8 sistemas del cuerpo humano capa por capa, con visor anatómico preciso, modo quiz y exportación para acetatos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

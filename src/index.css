@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+/* Transición suave entre capas (cross-fade 0.5s) */
+.layer-crossfade {
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efecto interactivo sobre órganos, músculos y huesos */
+.interactive-organ {
+  transition: filter 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+.interactive-organ:hover {
+  filter: brightness(1.15) drop-shadow(0 0 6px rgba(59, 130, 246, 0.7));
+}
+.interactive-organ.is-selected {
+  filter: brightness(1.22) drop-shadow(0 0 10px rgba(245, 158, 11, 0.9));
+}
+.interactive-organ.quiz-hint-pulse {
+  animation: quizPulse 1s infinite alternate ease-in-out;
+}
+
+@keyframes quizPulse {
+  0% {
+    filter: drop-shadow(0 0 4px #f59e0b) brightness(1.1);
+    opacity: 0.85;
+  }
+  100% {
+    filter: drop-shadow(0 0 14px #ef4444) brightness(1.35);
+    opacity: 1;
+  }
+}
+
+/* Estilos de impresión para Cuadernillo de Acetatos */
+@media print {
+  body {
+    background: transparent !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .sheet-page {
+    page-break-after: always;
+    break-after: page;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
